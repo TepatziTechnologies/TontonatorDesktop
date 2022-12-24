@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32825.248
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TontonatorDesktopApp", "TontonatorDesktopApp.csproj", "{7D6B1CF0-0F02-40B5-9354-021E68AC7DBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D6B1CF0-0F02-40B5-9354-021E68AC7DBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D6B1CF0-0F02-40B5-9354-021E68AC7DBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D6B1CF0-0F02-40B5-9354-021E68AC7DBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D6B1CF0-0F02-40B5-9354-021E68AC7DBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5927F526-3FF4-4783-9513-52B8842F7510}
+	EndGlobalSection
+EndGlobal
