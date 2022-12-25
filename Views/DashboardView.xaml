@@ -33,6 +33,7 @@
             <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/exit.png"/>
             <Label Content="Salir" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
         </Grid>
+        <Grid x:Name="pageGrid" HorizontalAlignment="Left" VerticalAlignment="Center" Width="640" Height="450" Margin="160,0,0,0"/>
 
     </Grid>
 </Window>
