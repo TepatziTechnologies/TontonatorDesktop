@@ -8,9 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\png\dashboard.png" />
     <None Remove="Assets\png\delete.png" />
+    <None Remove="Assets\png\exit.png" />
+    <None Remove="Assets\png\list.png" />
     <None Remove="Assets\png\lock.png" />
+    <None Remove="Assets\png\people.png" />
     <None Remove="Assets\png\person.png" />
+    <None Remove="Assets\png\profile.png" />
+    <None Remove="Assets\png\questions.png" />
     <None Remove="Assets\svg\person.svg" />
     <None Remove="Fonts\Montserrat-Black.ttf" />
     <None Remove="Fonts\Montserrat-BlackItalic.ttf" />
@@ -33,10 +39,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Assets\png\dashboard.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\png\delete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\png\exit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\png\list.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\png\lock.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\png\people.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\png\profile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\png\questions.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Fonts\Montserrat-Black.ttf">
