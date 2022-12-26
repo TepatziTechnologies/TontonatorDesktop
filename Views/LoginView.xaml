@@ -4,9 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TontonatorDesktopApp.Views"
+         xmlns:vm="clr-namespace:TontonatorDesktopApp.ViewModel" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" xmlns:local1="clr-namespace:TontonatorDesktopApp.Helpers"
         mc:Ignorable="d"
         Title="Login" Height="400" Width="300" AllowsTransparency="True" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="None">
 
+    <Window.DataContext>
+        <vm:LoginViewModel/>
+    </Window.DataContext>
+    
     <Window.Clip>
         <RectangleGeometry Rect="0,0,300,400" RadiusX="20" RadiusY="20"/>
     </Window.Clip>
@@ -20,7 +25,11 @@
                 <Grid Height="35">
                     <Rectangle HorizontalAlignment="Left" VerticalAlignment="Center" Width="30" Fill="{DynamicResource PrimaryDark}" StrokeThickness="0" Height="35"/>
                     <Image HorizontalAlignment="Left" Height="22" Margin="4,5,0,0" VerticalAlignment="Top" Width="22" Source="/Assets/png/person.png"/>
-                    <TextBox HorizontalAlignment="Left" Margin="30,0,0,0" TextWrapping="Wrap" Text="Usuario" VerticalAlignment="Top" Width="196" BorderBrush="{x:Null}" Height="32" SelectionBrush="{DynamicResource PrimaryDark}" Background="{x:Null}" Foreground="{DynamicResource PrimaryDark}" VerticalContentAlignment="Center" FontFamily="Montserrat" BorderThickness="0,0,0,0" FontSize="14" Padding="4,0,0,0"/>
+                    <TextBox HorizontalAlignment="Left" Margin="30,0,0,0" TextWrapping="Wrap" Text="{Binding UsernameText, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="196" BorderBrush="{x:Null}" Height="32" SelectionBrush="{DynamicResource PrimaryDark}" Background="{x:Null}" Foreground="{DynamicResource PrimaryDark}" VerticalContentAlignment="Center" FontFamily="Montserrat" BorderThickness="0,0,0,0" FontSize="14" Padding="4,0,0,0">
+                        <i:Interaction.Behaviors>
+                            <!--<local1:FocusChangedBehavior IsFocused="{Binding IsFocusedTxt1}" />-->
+                        </i:Interaction.Behaviors>
+                    </TextBox>
                 </Grid>
             </Border>
 
@@ -42,6 +51,10 @@
         <Button Content="INICIAR SESIÓN" HorizontalAlignment="Center" Margin="0,210,0,0" VerticalAlignment="Top" Style="{DynamicResource RoundedCorners}" Width="230" Height="35" Foreground="White" Background="#FF2D2D2D" BorderBrush="{x:Null}"/>
         <Label Content="TONTONATOR" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="{DynamicResource Montserrat}" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryDark}"/>
         <Label Content="¿Olvidaste tu contraseña?" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontFamily="{DynamicResource Montserrat}" FontSize="9"/>
-        <Image HorizontalAlignment="Left" Height="24" Margin="266,10,0,0" VerticalAlignment="Top" Width="24" Source="/Assets/png/delete.png"/>
+        <Button HorizontalAlignment="Left" Height="24" Margin="266,10,0,0" VerticalAlignment="Top" Width="24" Command="{Binding QuitWindowCommand}">
+            <Button.Background>
+                <ImageBrush ImageSource="/Assets/png/delete.png"/>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>
