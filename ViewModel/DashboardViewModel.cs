@@ -41,11 +41,17 @@ namespace TontonatorDesktopApp.ViewModel
 		public ICommand HomeMenuButton { get; set; }
 		public ICommand QuestionMenuButton { get; set; }
 		public ICommand QuestionListButtonCommand { get; set; }
-		public ICommand CharacterListButtonCommand { get; set; }
 		public ICommand QuestionAddButtonCommand { get; set; }
 		public ICommand QuestionInfoButtonCommand { get; set; }
 		public ICommand QuestionEditButtonCommand { get; set; }
 		public ICommand QuestionDeleteButtonCommand { get; set; }
+
+		public ICommand CharacterMenuButtonCommand { get; set; }
+		public ICommand CharacterListButtonCommand { get; set; }
+		public ICommand CharacterInfoButtonCommand {get; set;}
+		public ICommand CharacterEditButtonCommand { get; set; }
+		public ICommand CharacterDeleteButtonCommand { get; set; }
+
 		#endregion
 
 		#region QuestionVars
@@ -84,6 +90,7 @@ namespace TontonatorDesktopApp.ViewModel
 			QuestionInfoButtonCommand = new RelayCommand(new Action<object>(QuestionInfoButtonAction));
 			QuestionEditButtonCommand = new RelayCommand(new Action<object>(QuestionEditButtonAction));
 			QuestionDeleteButtonCommand = new RelayCommand(new Action<object>(QuestionDeleteButtonAction));
+			CharacterMenuButtonCommand = new RelayCommand(new Action<object>(CharacterMenuButtonAction));
 			QuestionListIsCurrent = true;
 			QuestionAddIsCurrent = false;
 
@@ -100,16 +107,6 @@ namespace TontonatorDesktopApp.ViewModel
 				QuestionAddIsCurrent = false;
 				QuestionListVisibility = Visibility.Visible;
 				QuestionAddVisibility = Visibility.Hidden;
-				QuestionListButtonColor = _primarySolidColorBrush;
-				QuestionListButtonFontColor = _whiteSolidColorBrush;
-				QuestionAddButtonColor = _whiteSolidColorBrush;
-				QuestionAddButtonFontColor = _primarySolidColorBrush;
-				OnPropertyChanged("QuestionListVisibility");
-				OnPropertyChanged("QuestionAddVisibility");
-				OnPropertyChanged("QuestionListButtonColor");
-				OnPropertyChanged("QuestionAddButtonColor");
-				OnPropertyChanged("QuestionAddButtonFontColor");
-				OnPropertyChanged("QuestionListButtonFontColor");
 			}
 		}
 
@@ -121,26 +118,26 @@ namespace TontonatorDesktopApp.ViewModel
 				QuestionAddIsCurrent = true;
 				QuestionListVisibility = Visibility.Hidden;
 				QuestionAddVisibility = Visibility.Visible;
-				QuestionListButtonColor = _whiteSolidColorBrush;
-				QuestionListButtonFontColor = _primarySolidColorBrush;
-				QuestionAddButtonColor = _primarySolidColorBrush;
-				QuestionAddButtonFontColor = _whiteSolidColorBrush;
 				OnPropertyChanged("QuestionListVisibility");
 				OnPropertyChanged("QuestionAddVisibility");
-				OnPropertyChanged("QuestionListButtonColor");
-				OnPropertyChanged("QuestionAddButtonColor");
-				OnPropertyChanged("QuestionAddButtonFontColor");
-				OnPropertyChanged("QuestionListButtonFontColor");
 			}
 		}
 
 		private void QuestionMenuButtonAction(object obj)
 		{
-			
+			QuestionGridVisibility = Visibility.Visible;
+			CharactersGridVisibility = Visibility.Hidden;
+			OnPropertyChanged("QuestionGridVisibility");
+			OnPropertyChanged("CharactersGridVisibility");
 		}
 
-
-
+		private void CharacterMenuButtonAction(object obj)
+		{
+			QuestionGridVisibility = Visibility.Hidden;
+			CharactersGridVisibility = Visibility.Visible;
+			OnPropertyChanged("QuestionGridVisibility");
+			OnPropertyChanged("CharactersGridVisibility");
+		}
 		
 		public DelegateLoadedAction LoadAction
 		{
@@ -149,6 +146,7 @@ namespace TontonatorDesktopApp.ViewModel
 				return _loadAction ?? (_loadAction = new DelegateLoadedAction(async () =>
 				{
 					SetQuestionItems();
+					SetCharactersItems();
 				}));
 			}
 		}
@@ -196,6 +194,36 @@ namespace TontonatorDesktopApp.ViewModel
 		}
 
 
+
+		private Grid AddListCharacterItem(Character character)
+		{
+			var grid = new Grid();
+			var separator = new Separator();
+
+			separator.HorizontalAlignment = HorizontalAlignment.Left;
+			separator.VerticalAlignment = VerticalAlignment.Top;
+			separator.Height = 27;
+			separator.Width = 620;
+			separator.Margin = new Thickness(0, 20, 0, 0);
+			separator.Background = new SolidColorBrush(Colors.LightGray);
+
+			grid.Height = 36;
+			grid.Width = 640;
+			grid.Children.Add(separator);
+			grid.Children.Add(GenerateTableSeparator(new Thickness(321, 10, 0, 0)));
+			grid.Children.Add(GenerateTableSeparator(new Thickness(141, 10, 0, 0)));
+			grid.Children.Add(GenerateTableSeparator(new Thickness(430, 10, 0, 0)));
+			grid.Children.Add(GenerateTableSeparator(new Thickness(520, 10, 0, 0)));
+			grid.Children.Add(GenerateLabel(character.Id, 141, new Thickness(10, 5, 0, 0)));
+			grid.Children.Add(GenerateLabel(character.CharacterName, 170, new Thickness(156, 5, 0, 0)));
+			grid.Children.Add(GenerateLabel("Enabled", 81, new Thickness(445, 5, 0, 0)));
+			grid.Children.Add(GenerateLabel(character.CharacterCategory.ToString(), 98, new Thickness(336, 5, 0, 0)));
+			grid.Children.Add(GenerateButtonAction("Assets/png/info.png", new Thickness(544, 7, 0, 0), QuestionInfoButtonCommand, character.Id));
+			grid.Children.Add(GenerateButtonAction("Assets/png/edit.png", new Thickness(569, 7, 0, 0), QuestionEditButtonCommand, character.Id));
+			grid.Children.Add(GenerateButtonAction("Assets/png/trash.png", new Thickness(594, 7, 0, 0), QuestionDeleteButtonCommand, character.Id));
+
+			return grid;
+		}
 
 		private Grid AddListQuestionItem(Question question)
 		{
@@ -307,6 +335,41 @@ namespace TontonatorDesktopApp.ViewModel
 		}
 
 		public void QuestionDeleteButtonAction(object obj)
+		{
+			var id = "";
+			if (obj != null) id = (string)obj;
+
+			var result = MessageBox.Show("¿Seguro que desea borrar el elemento?", "Atención", MessageBoxButton.YesNo);
+
+			if (result == MessageBoxResult.Yes) _questionsService.Delete(id);
+
+			SetQuestionItems();
+		}
+
+		public void CharacterInfoButtonAction(object obj)
+		{
+			var id = "";
+			if (obj != null) id = (string) obj;
+
+			var question = _questionsService.Read(nameof(Question.Id), id);
+
+			if(question != null) new InfoQuestionDialog(question).ShowDialog();
+			
+		}
+
+		public void CharacterEditButtonAction(object obj)
+		{
+			var id = "";
+			if (obj != null) id = (string)obj;
+
+			var question = _questionsService.Read(nameof(Question.Id), id);
+
+			if (question != null) new EditQuestionDialog(question).ShowDialog();
+
+			SetQuestionItems();
+		}
+
+		public void CharacterDeleteButtonAction(object obj)
 		{
 			var id = "";
 			if (obj != null) id = (string)obj;

@@ -8,12 +8,15 @@ namespace TontonatorDesktopApp.Models
 {
 	class UserApp
 	{
+		public string? UserFullname { get; set; }
+		public string Id { get; set; }
 		public string Username { get; set; }
 		public string Password { get; set; }
 
-		public UserApp()
+		public UserApp(string username, string password)
 		{
-
+			this.username;
+			this.password;
 		}
 	}
 }

@@ -50,7 +50,7 @@
         </Grid>
         <Button Content="INICIAR SESIÓN" HorizontalAlignment="Center" Margin="0,210,0,0" VerticalAlignment="Top" Style="{DynamicResource RoundedCorners}" Width="230" Height="35" Foreground="White" Background="#FF2D2D2D" BorderBrush="{x:Null}"/>
         <Label Content="TONTONATOR" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="{DynamicResource Montserrat}" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryDark}"/>
-        <Label Content="¿Olvidaste tu contraseña?" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontFamily="{DynamicResource Montserrat}" FontSize="9"/>
+        <Label Content="{Binding ErrorText}" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontFamily="{DynamicResource Montserrat}" FontSize="9"/>
         <Button HorizontalAlignment="Left" Height="24" Margin="266,10,0,0" VerticalAlignment="Top" Width="24" Command="{Binding QuitWindowCommand}">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/png/delete.png"/>

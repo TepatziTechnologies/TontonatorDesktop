@@ -92,7 +92,6 @@ namespace TontonatorDesktopApp.Services
 				}
 			}
 
-
 			return characters;
 		}
 

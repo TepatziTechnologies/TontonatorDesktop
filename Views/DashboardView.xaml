@@ -22,15 +22,15 @@
             <Image HorizontalAlignment="Center" Height="100" Margin="0,26,0,0" VerticalAlignment="Top" Width="100" Source="/Assets/png/profile.png"/>
             <Grid Height="30" Margin="0,175,0,0" VerticalAlignment="Top">
                 <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/dashboard.png"/>
-                <Label Content="Inicio" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
+                <Button Content="Inicio" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
             </Grid>
             <Grid Height="30" Margin="0,206,0,0" VerticalAlignment="Top">
                 <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/questions.png"/>
-                <Label Content="Preguntas" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
+                <Button Command="{Binding QuestionMenuButton}" Content="Preguntas" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
             </Grid>
             <Grid Height="30" Margin="0,236,0,0" VerticalAlignment="Top">
                 <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/list.png"/>
-                <Label Content="Personajes" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
+                <Button Command="{Binding CharacterMenuButtonCommand}" Content="Personajes" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
             </Grid>
             <Grid Height="30" Margin="0,266,0,0" VerticalAlignment="Top">
                 <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/people.png"/>
