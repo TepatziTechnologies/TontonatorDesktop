@@ -1,0 +1,85 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TontonatorDesktopApp.Views.Dialogs"
+        xmlns:System="clr-namespace:System;assembly=System.Runtime" x:Class="TontonatorDesktopApp.Views.Dialogs.EditQuestionDialog"
+        mc:Ignorable="d"
+        Title="InfoQuestionDialog" Height="333" Width="253" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" AllowsTransparency="True" BorderBrush="{DynamicResource PrimaryDark}" BorderThickness="1,1,1,1" MouseLeftButtonDown="Window_MouseLeftButtonDown">
+
+    <Window.Clip>
+        <RectangleGeometry RadiusX="13" RadiusY="13" Rect="0,0,253,333"/>
+    </Window.Clip>
+
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Label Content="Id" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontFamily="Montserrat Medium"/>
+        <Grid Margin="10,41,0,0" VerticalAlignment="Top" Width="230" Height="35" HorizontalAlignment="Left" d:IsLocked="True">
+            <Grid.Clip>
+                <RectangleGeometry Rect="0,0,230,35" RadiusX="10" RadiusY="10"/>
+            </Grid.Clip>
+            <Border Width="230" Height="35" CornerRadius="8" BorderThickness="2,2,2,2" VerticalAlignment="Top" HorizontalAlignment="Left" BorderBrush="{DynamicResource PrimaryDark}">
+                <Grid Height="35">
+                    <TextBox IsEnabled="False" x:Name="idTB" HorizontalAlignment="Center" VerticalAlignment="Top" Width="206" BorderBrush="{x:Null}" Height="32" SelectionBrush="{DynamicResource PrimaryDark}" Background="{x:Null}" Foreground="{DynamicResource PrimaryDark}" VerticalContentAlignment="Center" FontFamily="Montserrat" BorderThickness="0,0,0,0" FontSize="12" Padding="0,0,0,0" Text="Id"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <Label Content="Status" HorizontalAlignment="Left" Margin="10,221,0,0" VerticalAlignment="Top" FontFamily="Montserrat Medium"/>
+        <Grid Margin="10,111,0,0" VerticalAlignment="Top" Width="230" Height="35" HorizontalAlignment="Left">
+            <Grid.Clip>
+                <RectangleGeometry Rect="0,0,230,35" RadiusX="10" RadiusY="10"/>
+            </Grid.Clip>
+            <Border Width="230" Height="35" CornerRadius="8" BorderThickness="2,2,2,2" VerticalAlignment="Top" HorizontalAlignment="Left" BorderBrush="{DynamicResource PrimaryDark}" d:IsLocked="True">
+                <Grid Height="35">
+                    <TextBox IsEnabled="False" x:Name="questionTB" HorizontalAlignment="Center"  VerticalAlignment="Top" Width="206" BorderBrush="{x:Null}" Height="32" SelectionBrush="{DynamicResource PrimaryDark}" Background="{x:Null}" Foreground="{DynamicResource PrimaryDark}" VerticalContentAlignment="Center" FontFamily="Montserrat" BorderThickness="0,0,0,0" FontSize="12" Padding="0,0,0,0" Text="Pregunta"/>
+                </Grid>
+            </Border>
+        </Grid>
+        <Label Content="Pregunta" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top" FontFamily="Montserrat Medium"/>
+        <Grid Margin="10,181,0,0" VerticalAlignment="Top" Width="230" Height="35" HorizontalAlignment="Left">
+            <Grid.Clip>
+                <RectangleGeometry Rect="0,0,230,35" RadiusX="10" RadiusY="10"/>
+            </Grid.Clip>
+            <Border Width="230" Height="35" CornerRadius="8" BorderThickness="2,2,2,2" VerticalAlignment="Top" HorizontalAlignment="Left" BorderBrush="{DynamicResource PrimaryDark}">
+                <Grid Height="35">
+                    <ComboBox x:Name="categoryCB" HorizontalAlignment="Center" VerticalAlignment="Center" Width="226" Height="35" BorderBrush="{x:Null}">
+                        <ComboBox.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="#FFF0F0F0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Background>
+                        <System:String>Basic</System:String>
+                        <System:String>Character</System:String>
+                    </ComboBox>
+                </Grid>
+            </Border>
+        </Grid>
+        <Label Content="Categoria" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" FontFamily="Montserrat Medium"/>
+        <Grid Margin="10,251,0,0" VerticalAlignment="Top" Width="230" Height="35" HorizontalAlignment="Left">
+            <Grid.Clip>
+                <RectangleGeometry Rect="0,0,230,35" RadiusX="10" RadiusY="10"/>
+            </Grid.Clip>
+            <Border Width="230" Height="35" CornerRadius="8" BorderThickness="2,2,2,2" VerticalAlignment="Top" HorizontalAlignment="Left" BorderBrush="{DynamicResource PrimaryDark}">
+                <Grid Height="35">
+                    <ComboBox x:Name="statusCB" HorizontalAlignment="Center" VerticalAlignment="Center" Width="226" Height="35" BorderBrush="{x:Null}">
+                        <ComboBox.Background>
+                            <LinearGradientBrush EndPoint="0,1">
+                                <GradientStop Color="#FFF0F0F0"/>
+                                <GradientStop Color="White" Offset="1"/>
+                            </LinearGradientBrush>
+                        </ComboBox.Background>
+                        <System:String>Enabled</System:String>
+                        <System:String>Disabled</System:String>
+                    </ComboBox>
+                </Grid>
+            </Border>
+        </Grid>
+        <Button x:Name="acceptBtn" Style="{StaticResource RoundedCorners2}" Content="Aceptar" HorizontalAlignment="Left" Margin="10,291,0,0" VerticalAlignment="Top" Width="230" Height="30" Background="#FF029447" BorderBrush="{x:Null}" Foreground="White" FontFamily="Montserrat Black" Click="acceptBtn_Click"/>
+        <Button HorizontalAlignment="Left" Height="24" Margin="219,10,0,0" VerticalAlignment="Top" Width="24" Command="{Binding QuitWindowCommand}" Click="Button_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/Assets/png/delete.png"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>

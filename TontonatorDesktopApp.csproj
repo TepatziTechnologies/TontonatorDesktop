@@ -10,13 +10,16 @@
   <ItemGroup>
     <None Remove="Assets\png\dashboard.png" />
     <None Remove="Assets\png\delete.png" />
+    <None Remove="Assets\png\edit.png" />
     <None Remove="Assets\png\exit.png" />
+    <None Remove="Assets\png\info.png" />
     <None Remove="Assets\png\list.png" />
     <None Remove="Assets\png\lock.png" />
     <None Remove="Assets\png\people.png" />
     <None Remove="Assets\png\person.png" />
     <None Remove="Assets\png\profile.png" />
     <None Remove="Assets\png\questions.png" />
+    <None Remove="Assets\png\trash.png" />
     <None Remove="Assets\svg\person.svg" />
     <None Remove="Assets\Fonts\Montserrat-Black.ttf" />
     <None Remove="Assets\Fonts\Montserrat-BlackItalic.ttf" />
@@ -36,6 +39,7 @@
     <None Remove="Assets\Fonts\Montserrat-SemiBoldItalic.ttf" />
     <None Remove="Assets\Fonts\Montserrat-Thin.ttf" />
     <None Remove="Assets\Fonts\Montserrat-ThinItalic.ttf" />
+    <None Remove="tontonatoruaq-firebase-adminsdk-oww74-029b8e3492.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,7 +49,13 @@
     <Content Include="Assets\png\delete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\png\edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Assets\png\exit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Assets\png\info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\png\list.png">
@@ -117,10 +127,16 @@
     <Content Include="Assets\Fonts\Montserrat-ThinItalic.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\png\trash.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Assets\svg\person.svg" />
+    <EmbeddedResource Include="tontonatoruaq-firebase-adminsdk-oww74-029b8e3492.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
@@ -131,7 +147,22 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
+    <PackageReference Include="Google.Cloud.Firestore" Version="3.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
     <PackageReference Include="System.Windows.Interactivity.WPF" Version="2.0.20525" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\Dialogs\EditQuestionDialog.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\Dialogs\EditQuestionDialog.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

@@ -17,7 +17,6 @@ namespace TontonatorDesktopApp.Commands
 		}
 
 		#region ICommand Members
-
 		public bool CanExecute(object parameter)
 		{
 			return true;

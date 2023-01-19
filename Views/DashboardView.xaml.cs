@@ -23,5 +23,5 @@ namespace TontonatorDesktopApp.Views
 		{
 			InitializeComponent();
 		}
-	}
+    }
 }

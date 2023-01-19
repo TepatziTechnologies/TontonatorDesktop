@@ -4,8 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TontonatorDesktopApp.Views"
+        xmlns:vm="clr-namespace:TontonatorDesktopApp.ViewModel"
+        xmlns:actions="clr-namespace:TontonatorDesktopApp.Commands.Actions"
         mc:Ignorable="d"
-        Title="DashboardView" WindowStartupLocation="CenterScreen" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize">
+        Title="DashboardView" WindowStartupLocation="CenterScreen" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" ResizeMode="NoResize"
+        actions:LoadedBindings.LoadedEnabled="True"
+        actions:LoadedBindings.LoadedAction="{Binding LoadAction}">
+    <Window.DataContext>
+        <vm:DashboardViewModel/>
+    </Window.DataContext>
+
     <Window.Clip>
         <RectangleGeometry Rect="0,0,800,450" RadiusX="20" RadiusY="20"/>
     </Window.Clip>
@@ -28,12 +36,122 @@
                 <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/people.png"/>
                 <Label Content="Usuarios" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
             </Grid>
+            <Grid Height="30" Margin="0,420,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160">
+                <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/exit.png"/>
+                <Label Content="Salir" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
+            </Grid>
         </Grid>
-        <Grid Height="30" Margin="0,420,640,0" VerticalAlignment="Top">
-            <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/exit.png"/>
-            <Label Content="Salir" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
+        <Grid x:Name="questionsGrid" Visibility="{Binding QuestionGridVisibility}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="640" Height="450" Margin="160,0,0,0">
+            <Button Content="Lista" Command="{Binding QuestionListButtonCommand}" Height="30" Margin="10,10,509,410" Width="120" Style="{StaticResource TopCornersRounded}" Background="{Binding QuestionListButtonColor}" Foreground="{Binding QuestionListButtonFontColor}" BorderBrush="{x:Null}" Padding="0,0,0,0"/>
+            <Rectangle HorizontalAlignment="Center" Height="4" Margin="0,43,0,0" VerticalAlignment="Top" Width="620" Stroke="{DynamicResource PrimaryDark}" Fill="{DynamicResource PrimaryDark}"/>
+            <Grid Margin="0,47,0,0">
+                <Button Content="ID" HorizontalAlignment="Left" Margin="10,1,0,0" VerticalAlignment="Top" Height="30" Width="140" FontWeight="Bold" FontFamily="{DynamicResource Montserrat}" Foreground="{DynamicResource PrimaryDark}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="10"/>
+                <Separator HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" Height="27" Width="620" Background="#FFD8D8D8"/>
+                <Button Content="NOMBRE" HorizontalAlignment="Left" Margin="151,1,0,0" VerticalAlignment="Top" Height="30" Width="180" FontWeight="Bold" FontFamily="{DynamicResource Montserrat}" Foreground="{DynamicResource PrimaryDark}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="10"/>
+                <Button Content="ACCIONES" HorizontalAlignment="Left" Margin="530,1,0,0" VerticalAlignment="Top" Height="30" Width="100" FontWeight="Bold" FontFamily="{DynamicResource Montserrat}" Foreground="{DynamicResource PrimaryDark}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="10"/>
+                <Button Content="STATUS" HorizontalAlignment="Left" Margin="440,1,0,0" VerticalAlignment="Top" Height="30" Width="90" FontWeight="Bold" FontFamily="{DynamicResource Montserrat}" Foreground="{DynamicResource PrimaryDark}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="10"/>
+                <Button Content="CATEGORIA" HorizontalAlignment="Left" Margin="331,1,0,0" VerticalAlignment="Top" Height="30" Width="109" FontWeight="Bold" FontFamily="{DynamicResource Montserrat}" Foreground="{DynamicResource PrimaryDark}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="10"/>
+                <Separator HorizontalAlignment="Left" Margin="321,10,0,0" VerticalAlignment="Top" Height="15" Width="20" RenderTransformOrigin="0.5,0.5" Background="#FFD8D8D8">
+                    <Separator.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Separator.RenderTransform>
+                </Separator>
+                <Separator HorizontalAlignment="Left" Margin="141,10,0,0" VerticalAlignment="Top" Height="15" Width="20" RenderTransformOrigin="0.5,0.5" Background="#FFD8D8D8">
+                    <Separator.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Separator.RenderTransform>
+                </Separator>
+                <Separator HorizontalAlignment="Left" Margin="430,10,0,0" VerticalAlignment="Top" Height="15" Width="20" RenderTransformOrigin="0.5,0.5" Background="#FFD8D8D8">
+                    <Separator.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Separator.RenderTransform>
+                </Separator>
+                <Separator HorizontalAlignment="Left" Margin="520,10,0,0" VerticalAlignment="Top" Height="15" Width="20" RenderTransformOrigin="0.5,0.5" Background="#FFD8D8D8">
+                    <Separator.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Separator.RenderTransform>
+                </Separator>
+            </Grid>
+            <ScrollViewer Margin="0,82,0,0">
+                <StackPanel x:Name="questionsTable" Margin="0,0,10,10" CanVerticallyScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto">
+                    
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
-        <Grid x:Name="pageGrid" HorizontalAlignment="Left" VerticalAlignment="Center" Width="640" Height="450" Margin="160,0,0,0"/>
-
+        <Grid x:Name="charactersGrid" Visibility="{Binding CharactersGridVisibility}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="640" Height="450" Margin="160,0,0,0">
+            <Button Content="Lista" Command="{Binding CharacterListButtonCommand}" Height="30" Margin="10,10,509,410" Width="120" Style="{StaticResource TopCornersRounded}" Background="{Binding QuestionListButtonColor}" Foreground="{Binding QuestionListButtonFontColor}" BorderBrush="{x:Null}" Padding="0,0,0,0"/>
+            <Rectangle HorizontalAlignment="Center" Height="4" Margin="0,43,0,0" VerticalAlignment="Top" Width="620" Stroke="{DynamicResource PrimaryDark}" Fill="{DynamicResource PrimaryDark}"/>
+            <Grid Margin="0,47,0,0">
+                <Button Content="ID" HorizontalAlignment="Left" Margin="10,1,0,0" VerticalAlignment="Top" Height="30" Width="140" FontWeight="Bold" FontFamily="{DynamicResource Montserrat}" Foreground="{DynamicResource PrimaryDark}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="10"/>
+                <Separator HorizontalAlignment="Center" Margin="0,20,0,0" VerticalAlignment="Top" Height="27" Width="620" Background="#FFD8D8D8"/>
+                <Button Content="NOMBRE" HorizontalAlignment="Left" Margin="151,1,0,0" VerticalAlignment="Top" Height="30" Width="180" FontWeight="Bold" FontFamily="{DynamicResource Montserrat}" Foreground="{DynamicResource PrimaryDark}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="10"/>
+                <Button Content="ACCIONES" HorizontalAlignment="Left" Margin="530,1,0,0" VerticalAlignment="Top" Height="30" Width="100" FontWeight="Bold" FontFamily="{DynamicResource Montserrat}" Foreground="{DynamicResource PrimaryDark}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="10"/>
+                <Button Content="STATUS" HorizontalAlignment="Left" Margin="440,1,0,0" VerticalAlignment="Top" Height="30" Width="90" FontWeight="Bold" FontFamily="{DynamicResource Montserrat}" Foreground="{DynamicResource PrimaryDark}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="10"/>
+                <Button Content="CATEGORIA" HorizontalAlignment="Left" Margin="331,1,0,0" VerticalAlignment="Top" Height="30" Width="109" FontWeight="Bold" FontFamily="{DynamicResource Montserrat}" Foreground="{DynamicResource PrimaryDark}" BorderBrush="{x:Null}" Background="{x:Null}" BorderThickness="0,0,0,0" FontSize="10"/>
+                <Separator HorizontalAlignment="Left" Margin="321,10,0,0" VerticalAlignment="Top" Height="15" Width="20" RenderTransformOrigin="0.5,0.5" Background="#FFD8D8D8">
+                    <Separator.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Separator.RenderTransform>
+                </Separator>
+                <Separator HorizontalAlignment="Left" Margin="141,10,0,0" VerticalAlignment="Top" Height="15" Width="20" RenderTransformOrigin="0.5,0.5" Background="#FFD8D8D8">
+                    <Separator.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Separator.RenderTransform>
+                </Separator>
+                <Separator HorizontalAlignment="Left" Margin="430,10,0,0" VerticalAlignment="Top" Height="15" Width="20" RenderTransformOrigin="0.5,0.5" Background="#FFD8D8D8">
+                    <Separator.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Separator.RenderTransform>
+                </Separator>
+                <Separator HorizontalAlignment="Left" Margin="520,10,0,0" VerticalAlignment="Top" Height="15" Width="20" RenderTransformOrigin="0.5,0.5" Background="#FFD8D8D8">
+                    <Separator.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Separator.RenderTransform>
+                </Separator>
+            </Grid>
+            <ScrollViewer Margin="0,82,0,0">
+                <StackPanel x:Name="charactersTable" Margin="0,0,10,10" CanVerticallyScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto"/>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>
