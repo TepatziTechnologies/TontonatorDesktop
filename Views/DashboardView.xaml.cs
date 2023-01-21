@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TontonatorDesktopApp.Models;
 
 namespace TontonatorDesktopApp.Views
 {
@@ -19,9 +20,10 @@ namespace TontonatorDesktopApp.Views
 	/// </summary>
 	public partial class DashboardView : Window
 	{
-		public DashboardView()
+		public DashboardView(UserApp user)
 		{
 			InitializeComponent();
+			usernameLabel.Content = user.Username;
 		}
     }
 }

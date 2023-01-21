@@ -35,28 +35,8 @@ namespace TontonatorDesktopApp.Models
 			dictionary.Add("Id", Id);
 			dictionary.Add("CharacterName", CharacterName);
 			dictionary.Add("CharacterCategory", CharacterCategory);
-			dictionary.Add("IdQuestions", QuestionsToArray());
 
 			return dictionary;
-		}
-
-		/// <summary>
-		/// This method should be used only when storing data into the database,
-		/// </summary>
-		/// <returns></returns>
-		private string[] QuestionsToArray()
-		{
-			string[] questions = new string[Questions.Count()];
-
-			var counter = 0;
-
-			foreach (var question in Questions)
-			{
-				questions[counter] = question.Id;
-				counter++;
-			}
-
-			return questions;
 		}
 	}
 }

@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using TontonatorDesktopApp.Commands;
+using TontonatorDesktopApp.Models;
+using TontonatorDesktopApp.Services;
+using TontonatorDesktopApp.Views;
 
 namespace TontonatorDesktopApp.ViewModel
 {
@@ -14,7 +17,6 @@ namespace TontonatorDesktopApp.ViewModel
 	{
 		private readonly UsersService _usersService;
 
-		private ICommand quitWindowCommand;
 		private string _usernameText { get; set; }
 		private string _passwordText { get; set; }
 		public ICommand QuitWindowCommand { get; set; }
@@ -36,7 +38,7 @@ namespace TontonatorDesktopApp.ViewModel
 			get { return _passwordText; }
 			set 
 			{ 
-				__passwordText = value;
+				_passwordText = value;
 				OnPropertyChanged("PasswordText"); 
 			}
 		}
@@ -47,17 +49,22 @@ namespace TontonatorDesktopApp.ViewModel
 			ErrorText = "";
 			UsernameText = "Usuario";
 			QuitWindowCommand = new RelayCommand(new Action<object>(QuitWindow));
+			LoginCommand = new RelayCommand(new Action<object>(LoginAction));
 		}
 
 		private void QuitWindow(object obj) => Application.Current.Shutdown();
 
-		private void LoginAction(){
-			UserApp? user = _usersService.GetUserByCredentials();
-			if(user != null){
+		private void LoginAction(object obj){
+			UserApp? user = _usersService.GetUserByCredentials(_usernameText, _passwordText);
 
+			if(user != null){
+				var dashboard = new DashboardView(user);
+				Application.Current.MainWindow.Close();
+				Application.Current.MainWindow = dashboard;
+				dashboard.Show();
 			}
 			else {
-				ErrorText = "Usuario no encotrado.";
+				ErrorText = "Usuario no encontrado.";
 				OnPropertyChanged("ErrorText");
 			}
 		}

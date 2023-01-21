@@ -45,7 +45,7 @@ namespace TontonatorDesktopApp.ViewModel
 		public ICommand QuestionInfoButtonCommand { get; set; }
 		public ICommand QuestionEditButtonCommand { get; set; }
 		public ICommand QuestionDeleteButtonCommand { get; set; }
-
+		public ICommand QuitWindow { get; set; }
 		public ICommand CharacterMenuButtonCommand { get; set; }
 		public ICommand CharacterListButtonCommand { get; set; }
 		public ICommand CharacterInfoButtonCommand {get; set;}
@@ -91,6 +91,11 @@ namespace TontonatorDesktopApp.ViewModel
 			QuestionEditButtonCommand = new RelayCommand(new Action<object>(QuestionEditButtonAction));
 			QuestionDeleteButtonCommand = new RelayCommand(new Action<object>(QuestionDeleteButtonAction));
 			CharacterMenuButtonCommand = new RelayCommand(new Action<object>(CharacterMenuButtonAction));
+			CharacterInfoButtonCommand = new RelayCommand(new Action<object>(CharacterInfoButtonAction));
+			CharacterEditButtonCommand = new RelayCommand(new Action<object>(CharacterEditButtonAction));
+			CharacterDeleteButtonCommand = new RelayCommand(new Action<object>(CharacterDeleteButtonAction));
+
+			QuitWindow = new RelayCommand(new Action<object>(QuitWindowAction));
 			QuestionListIsCurrent = true;
 			QuestionAddIsCurrent = false;
 
@@ -98,6 +103,8 @@ namespace TontonatorDesktopApp.ViewModel
 			CharactersAddVisibility = Visibility.Hidden;
 			CharactersListVisibility = Visibility.Hidden;
 		}
+
+		private void QuitWindowAction(object obj) => Application.Current.Shutdown();
 
 		private void QuestionListButtonAction(object obj)
 		{
@@ -150,7 +157,6 @@ namespace TontonatorDesktopApp.ViewModel
 				}));
 			}
 		}
-
 		private void SetQuestionItems()
 		{
 			var stackPanelList = FindChildHelper.Get<StackPanel>(Application.Current.MainWindow, "questionsTable");
@@ -168,7 +174,6 @@ namespace TontonatorDesktopApp.ViewModel
 					}
 					stackPanelList.UpdateLayout();
 				}
-
 			}
 		}
 
@@ -185,15 +190,12 @@ namespace TontonatorDesktopApp.ViewModel
 				{
 					foreach (var item in _characetrs)
 					{
-						stackPanelList.Children.Add(AddListQuestionItem(item));
+						stackPanelList.Children.Add(AddListCharacterItem(item));
 					}
 					stackPanelList.UpdateLayout();
 				}
-
 			}
 		}
-
-
 
 		private Grid AddListCharacterItem(Character character)
 		{
@@ -218,9 +220,9 @@ namespace TontonatorDesktopApp.ViewModel
 			grid.Children.Add(GenerateLabel(character.CharacterName, 170, new Thickness(156, 5, 0, 0)));
 			grid.Children.Add(GenerateLabel("Enabled", 81, new Thickness(445, 5, 0, 0)));
 			grid.Children.Add(GenerateLabel(character.CharacterCategory.ToString(), 98, new Thickness(336, 5, 0, 0)));
-			grid.Children.Add(GenerateButtonAction("Assets/png/info.png", new Thickness(544, 7, 0, 0), QuestionInfoButtonCommand, character.Id));
-			grid.Children.Add(GenerateButtonAction("Assets/png/edit.png", new Thickness(569, 7, 0, 0), QuestionEditButtonCommand, character.Id));
-			grid.Children.Add(GenerateButtonAction("Assets/png/trash.png", new Thickness(594, 7, 0, 0), QuestionDeleteButtonCommand, character.Id));
+			grid.Children.Add(GenerateButtonAction("Assets/png/info.png", new Thickness(544, 7, 0, 0), CharacterInfoButtonCommand, character.Id));
+			grid.Children.Add(GenerateButtonAction("Assets/png/edit.png", new Thickness(569, 7, 0, 0), CharacterEditButtonCommand, character.Id));
+			grid.Children.Add(GenerateButtonAction("Assets/png/trash.png", new Thickness(594, 7, 0, 0), CharacterDeleteButtonCommand, character.Id));
 
 			return grid;
 		}
@@ -351,9 +353,9 @@ namespace TontonatorDesktopApp.ViewModel
 			var id = "";
 			if (obj != null) id = (string) obj;
 
-			var question = _questionsService.Read(nameof(Question.Id), id);
+			var character = _charactersService.Read(nameof(Question.Id), id);
 
-			if(question != null) new InfoQuestionDialog(question).ShowDialog();
+			if(character != null) new InfoCharacterDialog(character).ShowDialog();
 			
 		}
 
@@ -362,11 +364,11 @@ namespace TontonatorDesktopApp.ViewModel
 			var id = "";
 			if (obj != null) id = (string)obj;
 
-			var question = _questionsService.Read(nameof(Question.Id), id);
+			var character = _charactersService.Read(nameof(Question.Id), id);
 
-			if (question != null) new EditQuestionDialog(question).ShowDialog();
+			if (character != null) new EditCharacterDialog(character).ShowDialog();
 
-			SetQuestionItems();
+			SetCharactersItems();
 		}
 
 		public void CharacterDeleteButtonAction(object obj)
@@ -376,9 +378,9 @@ namespace TontonatorDesktopApp.ViewModel
 
 			var result = MessageBox.Show("¿Seguro que desea borrar el elemento?", "Atención", MessageBoxButton.YesNo);
 
-			if (result == MessageBoxResult.Yes) _questionsService.Delete(id);
+			if (result == MessageBoxResult.Yes) _charactersService.Delete(id);
 
-			SetQuestionItems();
+			SetCharactersItems();
 		}
 
 		public event PropertyChangedEventHandler? PropertyChanged;

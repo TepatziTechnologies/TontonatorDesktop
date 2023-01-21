@@ -43,14 +43,14 @@
                 <Grid Height="35">
                     <Rectangle HorizontalAlignment="Left" VerticalAlignment="Center" Width="30" Fill="{DynamicResource PrimaryDark}" StrokeThickness="0" Height="35"/>
                     <Image HorizontalAlignment="Left" Height="18" Margin="6,7,0,0" VerticalAlignment="Top" Width="18" Source="/Assets/png/lock.png"/>
-                    <PasswordBox HorizontalAlignment="Left" Margin="30,0,0,0"  VerticalAlignment="Top" Width="196" BorderBrush="{x:Null}" Height="32" SelectionBrush="{DynamicResource PrimaryDark}" Background="{x:Null}" Foreground="{DynamicResource PrimaryDark}" VerticalContentAlignment="Center" FontFamily="Montserrat" BorderThickness="0,0,0,0" FontSize="14" Padding="4,0,0,0" Password="Password"/>
+                    <PasswordBox HorizontalAlignment="Left" Margin="30,0,0,0"  VerticalAlignment="Top" Width="196" BorderBrush="{x:Null}" Height="32" SelectionBrush="{DynamicResource PrimaryDark}" Background="{x:Null}" Foreground="{DynamicResource PrimaryDark}" VerticalContentAlignment="Center" FontFamily="Montserrat" BorderThickness="0,0,0,0" FontSize="14" Padding="4,0,0,0" Password="Password" PasswordChanged="PasswordBox_PasswordChanged"/>
                 </Grid>
             </Border>
 
         </Grid>
-        <Button Content="INICIAR SESIÓN" HorizontalAlignment="Center" Margin="0,210,0,0" VerticalAlignment="Top" Style="{DynamicResource RoundedCorners}" Width="230" Height="35" Foreground="White" Background="#FF2D2D2D" BorderBrush="{x:Null}"/>
+        <Button Command="{Binding LoginCommand}" Content="INICIAR SESIÓN" HorizontalAlignment="Center" Margin="0,210,0,0" VerticalAlignment="Top" Style="{DynamicResource RoundedCorners}" Width="230" Height="35" Foreground="White" Background="#FF2D2D2D" BorderBrush="{x:Null}"/>
         <Label Content="TONTONATOR" HorizontalAlignment="Center" Margin="0,67,0,0" VerticalAlignment="Top" FontSize="24" FontFamily="{DynamicResource Montserrat}" FontWeight="SemiBold" Foreground="{DynamicResource PrimaryDark}"/>
-        <Label Content="{Binding ErrorText}" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontFamily="{DynamicResource Montserrat}" FontSize="9"/>
+        <Label Content="{Binding ErrorText}" HorizontalAlignment="Center" Margin="0,250,0,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" FontFamily="{DynamicResource Montserrat}" FontSize="9" Foreground="#FF981B1B"/>
         <Button HorizontalAlignment="Left" Height="24" Margin="266,10,0,0" VerticalAlignment="Top" Width="24" Command="{Binding QuitWindowCommand}">
             <Button.Background>
                 <ImageBrush ImageSource="/Assets/png/delete.png"/>

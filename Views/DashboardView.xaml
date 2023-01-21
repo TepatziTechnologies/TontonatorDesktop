@@ -20,26 +20,23 @@
     <Grid>
         <Grid x:Name="menuGrid" Width="160" Background="{DynamicResource PrimaryDark}" HorizontalAlignment="Left">
             <Image HorizontalAlignment="Center" Height="100" Margin="0,26,0,0" VerticalAlignment="Top" Width="100" Source="/Assets/png/profile.png"/>
-            <Grid Height="30" Margin="0,175,0,0" VerticalAlignment="Top">
-                <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/dashboard.png"/>
-                <Button Content="Inicio" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
-            </Grid>
             <Grid Height="30" Margin="0,206,0,0" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="93*"/>
+                    <ColumnDefinition Width="67*"/>
+                </Grid.ColumnDefinitions>
                 <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/questions.png"/>
-                <Button Command="{Binding QuestionMenuButton}" Content="Preguntas" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
+                <Button Command="{Binding QuestionMenuButton}" Content="Preguntas" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124" Background="{x:Null}" Grid.ColumnSpan="2" BorderThickness="0,0,0,0"/>
             </Grid>
             <Grid Height="30" Margin="0,236,0,0" VerticalAlignment="Top">
                 <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/list.png"/>
-                <Button Command="{Binding CharacterMenuButtonCommand}" Content="Personajes" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
-            </Grid>
-            <Grid Height="30" Margin="0,266,0,0" VerticalAlignment="Top">
-                <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/people.png"/>
-                <Label Content="Usuarios" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
+                <Button Command="{Binding CharacterMenuButtonCommand}" Content="Personajes" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124" Background="{x:Null}" BorderThickness="0,0,0,0"/>
             </Grid>
             <Grid Height="30" Margin="0,420,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="160">
                 <Image HorizontalAlignment="Left" Height="16" Margin="10,0,0,0" VerticalAlignment="Center" Width="16" Source="/Assets/png/exit.png"/>
-                <Label Content="Salir" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124"/>
+                <Button Command="{Binding QuitWindow}" Content="Salir" HorizontalAlignment="Left" Margin="26,0,0,0" VerticalAlignment="Center" FontFamily="{DynamicResource Montserrat}" Foreground="White" Width="124" Background="{x:Null}" Padding="1,1,1,1" BorderThickness="0,0,0,0"/>
             </Grid>
+            <Label x:Name="usernameLabel" Content="Label" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top" Foreground="White" HorizontalContentAlignment="Center" Width="140"/>
         </Grid>
         <Grid x:Name="questionsGrid" Visibility="{Binding QuestionGridVisibility}" HorizontalAlignment="Left" VerticalAlignment="Center" Width="640" Height="450" Margin="160,0,0,0">
             <Button Content="Lista" Command="{Binding QuestionListButtonCommand}" Height="30" Margin="10,10,509,410" Width="120" Style="{StaticResource TopCornersRounded}" Background="{Binding QuestionListButtonColor}" Foreground="{Binding QuestionListButtonFontColor}" BorderBrush="{x:Null}" Padding="0,0,0,0"/>
@@ -94,7 +91,7 @@
             </Grid>
             <ScrollViewer Margin="0,82,0,0">
                 <StackPanel x:Name="questionsTable" Margin="0,0,10,10" CanVerticallyScroll="True" ScrollViewer.HorizontalScrollBarVisibility="Auto">
-                    
+
                 </StackPanel>
             </ScrollViewer>
         </Grid>

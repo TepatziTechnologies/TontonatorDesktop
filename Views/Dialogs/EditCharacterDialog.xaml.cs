@@ -33,13 +33,13 @@ namespace TontonatorDesktopApp.Views.Dialogs
 			idTB.Text = character.Id;
 			questionTB.Text = character.CharacterName;
 			categoryCB.Text = character.CharacterCategory.ToString();
-			statusCB.Text = "Activado";
 		}
 
 		private void acceptBtn_Click(object sender, RoutedEventArgs e)
 		{
-			character.QuestionCategory = Enum.Parse<QuestionCategory>(categoryCB.Text, true);
-			_quest_charactersServiceionsService.Update(character);
+			character.CharacterCategory = Enum.Parse<CharacterCategory>(categoryCB.Text, true);
+			_charactersService.Update(character);
+			this.Close();
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)

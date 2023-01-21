@@ -23,9 +23,14 @@ namespace TontonatorDesktopApp.Views
 		private readonly LoginViewModel _viewModel;
 		public Login()
 		{
-			InitializeComponent();
 			_viewModel = new LoginViewModel();
+			InitializeComponent();
 			DataContext = _viewModel;
+		}
+
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+			_viewModel.PasswordText = ((PasswordBox)sender).Password;
 		}
     }
 }

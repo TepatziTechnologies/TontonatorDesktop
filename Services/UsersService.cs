@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace TontonatorDesktopApp.Services
 
 		public UserApp? GetUserByCredentials(string username, string password){
 			var parentCollection = _firestoreDb.Collection(collection);
-			var result = parentCollection.Where(nameof(UserApp.Username), username).GetSnapshotAsync().GetAwaiter().GetResult();
+			var result = parentCollection.WhereIn(nameof(UserApp.Username), new List<string> { username }).GetSnapshotAsync().GetAwaiter().GetResult();
 
 			UserApp? user = null;
 
@@ -31,7 +32,7 @@ namespace TontonatorDesktopApp.Services
 
 					if (userapp != null)
 					{
-						user = userapp;
+						if(userapp.Password == password) user = userapp;
 					}
 				}
 			}
